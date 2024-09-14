@@ -21,6 +21,7 @@ public class EmployeeService {
 	
 	static ArrayList<Employee> Employees = new ArrayList<>();
 	static int countDays = -1;
+	static int employeeSize;
 	
 	static {
 		
@@ -94,11 +95,11 @@ public class EmployeeService {
 		//countDays++;
 		
 		//
-		
+		employeeSize = Employees.size()+1;
 		//
 		Employee newEmployee = new Employee();
 		
-		newEmployee.setId(id);
+		newEmployee.setId(employeeSize);
 		//newEmployee.setDays(null, countDays);//new datenhours(date, hours)
 		newEmployee.setName(name);
 		newEmployee.setPosition(position);
@@ -121,6 +122,7 @@ public class EmployeeService {
 		
 		//define date 
 		LocalDate date = LocalDate.now(); 
+		
 		
 		try {
 			// get employee-byid
