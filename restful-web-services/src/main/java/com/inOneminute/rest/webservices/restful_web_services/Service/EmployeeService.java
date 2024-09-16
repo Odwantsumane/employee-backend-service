@@ -152,7 +152,7 @@ public class EmployeeService {
 			// set hours
 			employee.setHoursWorked(hours);
 			
-			// set days 
+			// set days
 			employee.setDays(new datenhours(date, hours, today));
 		} catch (Exception e) {
 			return false;
