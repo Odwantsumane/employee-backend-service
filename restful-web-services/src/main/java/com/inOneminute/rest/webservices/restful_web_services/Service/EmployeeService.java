@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.inOneminute.rest.webservices.restful_web_services.models.Employee;
 
 @Service
-public class EmployeeService { 
+public class EmployeeService extends UniqueEmpNoGenerator{ 
 	
 	public static class datenhours {
 		public LocalDate date;
@@ -27,47 +27,47 @@ public class EmployeeService {
 		
 		Employee emp0 = new Employee();
 		
-		emp0.setId(1);
-		emp0.setName("");
-		emp0.setPosition("");
-		emp0.setRole("");
-		emp0.setSalary("");
-		emp0.setSurname("");
-		emp0.setYears("");
+		emp0.setId(122324);
+		emp0.setName("Person");
+		emp0.setPosition("Junior");
+		emp0.setRole("ESB Architect");
+		emp0.setSalary("R50 000 - 70 000");
+		emp0.setSurname("Surname");
+		emp0.setYears("5");
 		
-		Employee emp1 = new Employee();
-		emp1.setId(2);
-		emp1.setName("Odwa");
-		emp1.setPosition("Senior");
-		emp1.setRole("Integration Engineer");
-		emp1.setSalary("R30 000 - 40 000");
-		emp1.setSurname("Ntsumane");
-		emp1.setYears("3");
-		
-		Employee emp2 = new Employee();
-		emp2.setId(3);
-		emp2.setName("Aphelele");
-		emp2.setPosition("Junior");
-		emp2.setRole("Integration Engineer");
-		emp2.setSalary("R30 000 - 40 000");
-		emp2.setSurname("Ntsumane");
-		emp2.setYears("3");
-		
-		Employee emp3 = new Employee();
-		emp3.setId(4);
-		//emp3.setDays(7.23, 0);
-		emp3.setName("Andiswa");
-		emp3.setPosition("Intermediate");
-		emp3.setRole("Integration Engineer");
-		emp3.setSalary("R30 000 - 40 000");
-		emp3.setSurname("Ntsumane");
-		emp3.setYears("3");
-		//{'yyyy-mm-dd': hoursWorked}
-		
+//		Employee emp1 = new Employee();
+//		emp1.setId(2);
+//		emp1.setName("Odwa");
+//		emp1.setPosition("Senior");
+//		emp1.setRole("Integration Engineer");
+//		emp1.setSalary("R30 000 - 40 000");
+//		emp1.setSurname("Ntsumane");
+//		emp1.setYears("3");
+//		
+//		Employee emp2 = new Employee();
+//		emp2.setId(3);
+//		emp2.setName("Aphelele");
+//		emp2.setPosition("Junior");
+//		emp2.setRole("Integration Engineer");
+//		emp2.setSalary("R30 000 - 40 000");
+//		emp2.setSurname("Ntsumane");
+//		emp2.setYears("3");
+//		
+//		Employee emp3 = new Employee();
+//		emp3.setId(4);
+//		//emp3.setDays(7.23, 0);
+//		emp3.setName("Andiswa");
+//		emp3.setPosition("Intermediate");
+//		emp3.setRole("Integration Engineer");
+//		emp3.setSalary("R30 000 - 40 000");
+//		emp3.setSurname("Ntsumane");
+//		emp3.setYears("3");
+//		//{'yyyy-mm-dd': hoursWorked}
+//		
 		Employees.add(emp0);
-		Employees.add(emp1);
-		Employees.add(emp2);
-		Employees.add(emp3);
+//		Employees.add(emp1);
+//		Employees.add(emp2);
+//		Employees.add(emp3);
 	}
 	
 	EmployeeService() {}
@@ -77,12 +77,16 @@ public class EmployeeService {
 		return Employees;
 	}
 	
-	public static Employee getEmployee(int id) {
+	public static Employee getEmployee(long id) {
 		
-		// find employee by ID
-		id = id - 1;
+		// find employee by ID 
+		int position = 0;
+		for(Employee emp : Employees) { 
+			if (emp.getId() == id) return Employees.get(position);
+			position++;
+		}
 		
-		return Employees.get(id);
+		return new Employee();
 	}
 	
 	public static String[] AllEmployeeData() {
@@ -91,15 +95,15 @@ public class EmployeeService {
 	}
 	
 	// id will be auto-generated
-	public static Employee addEmployee(int id, float hours, String name,String surname, String years, String position, String role, String salary) {
+	public static Employee addEmployee(long id, float hours, String name,String surname, String years, String position, String role, String salary) {
 		//countDays++;
 		
 		//
-		employeeSize = Employees.size()+1;
+		//employeeSize = Employees.size()+1;
 		//
 		Employee newEmployee = new Employee();
 		
-		newEmployee.setId(employeeSize);
+		newEmployee.setId(id);
 		//newEmployee.setDays(null, countDays);//new datenhours(date, hours)
 		newEmployee.setName(name);
 		newEmployee.setPosition(position);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inOneminute.rest.webservices.restful_web_services.Service.EmployeeService;
+import com.inOneminute.rest.webservices.restful_web_services.Service.UniqueEmpNoGenerator;
 import com.inOneminute.rest.webservices.restful_web_services.models.Employee;
 
 @RestController
@@ -24,6 +25,7 @@ public class Employees {
 	                
 	@Autowired	
 	private EmployeeService employeeService;
+	//private UniqueEmpNoGenerator uniqueGen;
 	
 	Employees(){}
 	 
@@ -36,17 +38,16 @@ public class Employees {
 	
 	@SuppressWarnings("static-access")
 	@GetMapping("/getEmployee/{id}")
-	public Employee getEmployee(@PathVariable int id) {
+	public Employee getEmployee(@PathVariable long id) {
 		
 		return employeeService.getEmployee(id);
 	}
 	
 	@SuppressWarnings("static-access")
 	@PostMapping("/addEmployee")
-	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) { 
 		
-		
-		Employee newEmployee = employeeService.addEmployee(employee.getId(),(float)employee.getHoursWorked(),
+		Employee newEmployee = employeeService.addEmployee(employeeService.getUniqueId(),(float)employee.getHoursWorked(),
 				employee.getName(),employee.getSurname(),employee.getYears(),employee.getPosition(),employee.getRole(),employee.getSalary());
 		//return employeeService.getEmployee(1);
 		return new ResponseEntity<Employee>(newEmployee, HttpStatus.OK);
