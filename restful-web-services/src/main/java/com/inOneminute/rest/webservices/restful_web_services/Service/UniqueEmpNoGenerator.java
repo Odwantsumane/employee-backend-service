@@ -9,10 +9,8 @@ public class UniqueEmpNoGenerator {
 		 
 	};
 	
-	public long getUniqueId() {
+	public String getUniqueId() {
 		unique += 1;
-		return unique;
+		return unique + "";
 	}
-	
-	
 }

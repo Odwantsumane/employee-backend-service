@@ -3,7 +3,7 @@ package com.inOneminute.rest.webservices.restful_web_services.models;
 
 public class Employee extends EmployeeData{
 	
-	private long Id;
+	private String Id;
 	private String Name;
 	private String Surname;
 	private String Role;
@@ -15,12 +15,12 @@ public class Employee extends EmployeeData{
 	public Employee() {}
 
 	
-	public long getId() {
+	public String getId() {
 		return Id;
 	}
 
 
-	public void setId(long id2) {
+	public void setId(String id2) {
 		Id = id2;
 	}
 

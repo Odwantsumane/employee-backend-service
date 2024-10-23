@@ -27,7 +27,7 @@ public class EmployeeService extends UniqueEmpNoGenerator{
 		
 		Employee emp0 = new Employee();
 		
-		emp0.setId(122324);
+		emp0.setId("122324");
 		emp0.setName("Person");
 		emp0.setPosition("Junior");
 		emp0.setRole("ESB Architect");
@@ -77,12 +77,12 @@ public class EmployeeService extends UniqueEmpNoGenerator{
 		return Employees;
 	}
 	
-	public static Employee getEmployee(long id) {
+	public static Employee getEmployee(String id) {
 		
 		// find employee by ID 
 		int position = 0;
 		for(Employee emp : Employees) { 
-			if (emp.getId() == id) return Employees.get(position);
+			if (emp.getId().equals(id)) return Employees.get(position);
 			position++;
 		}
 		
@@ -95,7 +95,7 @@ public class EmployeeService extends UniqueEmpNoGenerator{
 	}
 	
 	// id will be auto-generated
-	public static Employee addEmployee(long id, float hours, String name,String surname, String years, String position, String role, String salary) {
+	public static Employee addEmployee(String id, float hours, String name,String surname, String years, String position, String role, String salary) {
 		//countDays++;
 		
 		//
@@ -121,7 +121,7 @@ public class EmployeeService extends UniqueEmpNoGenerator{
 		return newEmployee;
 	}
 	
-	public boolean updateEmployeeHours(int id, float hours, String today, int countDay) {
+	public boolean updateEmployeeHours(String id, float hours, String today, int countDay) {
 		//String[] days = {"Monday", "Tuesday","Wednesday","Thursday","Friday", "Saturday","Sunday"}; 
 		
 		//define date 
@@ -130,7 +130,7 @@ public class EmployeeService extends UniqueEmpNoGenerator{
 		
 		try {
 			// get employee-byid
-			Employee employee = getEmployee(id); 
+			Employee employee = getEmployee(id);
 			
 			// employee not found
 			//if (employee == null) return false;

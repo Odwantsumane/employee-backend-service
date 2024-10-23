@@ -38,7 +38,7 @@ public class Employees {
 	
 	@SuppressWarnings("static-access")
 	@GetMapping("/getEmployee/{id}")
-	public Employee getEmployee(@PathVariable long id) {
+	public Employee getEmployee(@PathVariable String id) {
 		
 		return employeeService.getEmployee(id);
 	}
@@ -58,9 +58,9 @@ public class Employees {
 	public ResponseEntity<String> updateHours(@PathVariable int id,@PathVariable float hours, 
 			@PathVariable String today, @PathVariable int countDay) {
 		
-		if(!employeeService.updateEmployeeHours(id, hours, today.toLowerCase(), countDay)) return new ResponseEntity<String>("Employee not found", HttpStatus.NOT_FOUND);
+		if(!employeeService.updateEmployeeHours(""+id, hours, today.toLowerCase(), countDay)) return new ResponseEntity<String>("Employee not found", HttpStatus.NOT_FOUND);
 		
-		return new ResponseEntity<String>(String.format("Employee %s with hours %2f has been successfully updated", employeeService.getEmployee(id).getName(), hours), HttpStatus.OK);
+		return new ResponseEntity<String>(String.format("Employee %s with hours %2f has been successfully updated", employeeService.getEmployee(id+"").getName(), hours), HttpStatus.OK);
 	}
 
 }
